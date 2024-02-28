@@ -28,10 +28,28 @@ first_model <-
   )
 
 
-#### Save model ####
+#### Save model 1 ####
 saveRDS(
   first_model,
   file = "models/first_model.rds"
+)
+
+first_model <-
+  stan_glm(
+    formula = flying_time ~ length,
+    data = analysis_data,
+    family = gaussian(),
+    prior = normal(location = 0, scale = 2.5, autoscale = TRUE),
+    prior_intercept = normal(location = 0, scale = 2.5, autoscale = TRUE),
+    prior_aux = exponential(rate = 1, autoscale = TRUE),
+    seed = 853
+  )
+
+
+#### Save model 2 ####
+saveRDS(
+  first_model,
+  file = "models/second_model.rds"
 )
 
 
